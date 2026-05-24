@@ -79,10 +79,10 @@ src/
 # How it works:
 ========================
 
-# when run Locally: 
-# In Terminal:
+when run Locally: 
+In Terminal:
 ./mvnw spring-boot:run
-# Then open:
+ Then open:
 http://localhost:8080
 OR
 Live Link(Mentioned above)
