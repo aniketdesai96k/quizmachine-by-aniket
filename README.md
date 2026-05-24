@@ -106,14 +106,14 @@ Live Link(Mentioned above)
 # Future Improvements:
 ========================
 
-Better UI/UX
-AI-assisted parsing improvements
-Authentication system
-Database integration
-Timer based quizzes
-Negative Marking
-Leaderboards
-Cloud deployment
+-Better UI/UX
+-AI-assisted parsing improvements
+-Authentication system
+-Database integration
+-Timer based quizzes
+-Negative Marking
+-Leaderboards
+-Cloud deployment
 
 
 
