@@ -1,5 +1,5 @@
 # QuizMachine by Aniket
-========================
+
 A Spring Boot based MCQ quiz platform that parses questions from PDFs and generates interactive online tests with automated evaluation.
 Users can upload:
 - **a combined question-answer PDF**
