@@ -18,13 +18,13 @@ public class PdfAnswerParser{
             System.out.println(text);
             String[]lines = text.split("\\r?\\n");
             Pattern pattern = Pattern.compile(
-                    "Q?\\s*(\\d+)\\s*[\\.\\-:]?\\s*([A-D])",
+                    "^Q?\\s*(\\d+)\\s*[\\.\\-:]\\s*([A-D])$",
                     Pattern.CASE_INSENSITIVE
             );
             for(String line : lines){
                 line = line.trim();
                 Matcher matcher =  pattern.matcher(line);
-                if(matcher.find()){
+                if(matcher.matches()){
                     int questionNumber = Integer.parseInt( matcher.group(1));
                     char optionChar = Character.toUpperCase(matcher.group(2).charAt(0));
                     int index = optionChar - 'A';
