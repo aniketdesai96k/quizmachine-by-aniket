@@ -60,16 +60,25 @@ https://quizmachine-by-aniket.onrender.com
 
 # Project Structure:
 ========================
+
 src/
  ├── controller/
  ├── service/
  ├── parser/
  ├── model/
  └── resources/
+ 
+ Main components:
+- PdfQuestionParser
+- PdfAnswerParser
+- QuizService
+- QuizController
+- QuizUploadController
 
 
 # How it works:
 ========================
+
 # when run Locally: 
 # In Terminal:
 ./mvnw spring-boot:run
@@ -90,6 +99,7 @@ Live Link(Mentioned above)
 
 
 # Future Improvements:
+
 ========================
 Better UI/UX
 AI-assisted parsing improvements
@@ -104,6 +114,7 @@ Cloud deployment
 
 # Known Limitations
 ========================
+
 - Currently optimized for English PDFs only
 - Some instruction blocks at the beginning of PDFs may get parsed into Question 1
 - Parsing accuracy depends on PDF formatting consistency
