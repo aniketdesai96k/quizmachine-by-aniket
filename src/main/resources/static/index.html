@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Machine</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+                135deg,
+                #4a90e2,
+                #6a5acd
+            );
+            overflow: hidden;
+        }
+        .container{
+            background-color: white;
+            width: 420px;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: slideUp 1s ease;
+        }
+        @keyframes slideUp{
+            from{
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1{
+            margin: 0;
+            font-size: 42px;
+            color: #222;
+            animation: fadeIn 2s ease;
+        }
+        .subtitle{
+            margin-top: 12px;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 35px;
+        }
+        @keyframes fadeIn{
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+        .mode-selection{
+            margin-bottom: 25px;
+        }
+        .radio-group{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 12px;
+        }
+        .upload-section{
+            margin-top: 25px;
+        }
+        input[type="file"]{
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background-color: #fafafa;
+        }
+        button{
+            margin-top: 25px;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background-color: #4a90e2;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        button:hover{
+            background-color: #357bd8;
+            transform: scale(1.02);
+        }
+        .floating-circle{
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            animation: float 8s infinite ease-in-out;
+        }
+        .circle1{
+            width: 200px;
+            height: 200px;
+            top: -50px;
+            left: -50px;
+        }
+        .circle2{
+            width: 150px;
+            height: 150px;
+            bottom: -40px;
+            right: -40px;
+            animation-delay: 2s;
+        }
+        @keyframes float{
+            0%{
+                transform: translateY(0px);
+            }
+            50%{
+                transform: translateY(20px);
+            }
+            100%{
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="floating-circle circle1"></div>
+<div class="floating-circle circle2"></div>
+<div class="container">
+    <h1>Quiz Machine</h1>
+    <div class="subtitle">
+        Upload PDFs and generate live quizzes instantly
+    </div>
+    <div class="mode-selection">
+        <h3>Select Upload Mode</h3>
+        <div class="radio-group">
+            <label>
+                <input type="radio"
+                       name="mode"
+                       value="combined"
+                       checked
+                       onchange="toggleMode()">
+                Combined PDF
+            </label>
+            <label>
+                <input type="radio"
+                       name="mode"
+                       value="separate"
+                       onchange="toggleMode()">
+                Separate PDFs
+            </label>
+        </div>
+    </div>
+    <div class="upload-section" id="combinedSection">
+        <input type="file" id="combinedFile">
+    </div>
+    <div class="upload-section"
+         id="separateSection"
+         style="display:none;">
+        <input type="file"
+               id="questionsFile">
+        <input type="file"
+               id="answersFile">
+    </div>
+    <button onclick="upload()">
+        Upload & Start Quiz
+    </button>
+</div>
+<script>
+function toggleMode(){
+    let mode =
+        document.querySelector(
+            'input[name="mode"]:checked'
+        ).value;
+    if(mode === "combined"){
+        document.getElementById(
+            "combinedSection"
+        ).style.display = "block";
+        document.getElementById(
+            "separateSection"
+        ).style.display = "none";
+    }
+    else{
+        document.getElementById(
+            "combinedSection"
+        ).style.display = "none";
+
+        document.getElementById(
+            "separateSection"
+        ).style.display = "block";
+    }
+}
+async function upload(){
+    let mode =
+        document.querySelector(
+            'input[name="mode"]:checked'
+        ).value;
+    try{
+        if(mode === "combined"){
+            let file =
+                document.getElementById(
+                    "combinedFile"
+                ).files[0];
+            let formData = new FormData();
+            formData.append("file", file);
+            await fetch("/quiz/upload",{
+                method: "POST",
+                body: formData
+            });
+        }
+        else{
+            let questionsFile =
+                document.getElementById(
+                    "questionsFile"
+                ).files[0];
+            let answersFile =
+                document.getElementById(
+                    "answersFile"
+                ).files[0];
+            let qForm = new FormData();
+            qForm.append("file", questionsFile);
+            let aForm = new FormData();
+            aForm.append("file", answersFile);
+            await fetch("/quiz/upload/questions",{
+                method: "POST",
+                body: qForm
+            });
+            await fetch("/quiz/upload/answers",{
+                method: "POST",
+                body: aForm
+            });
+        }
+        window.location.href = "/quiz.html";
+    }catch(error){
+        alert("Upload failed");
+        console.log(error);
+    }
+}
+</script>
+</body>
+</html>
