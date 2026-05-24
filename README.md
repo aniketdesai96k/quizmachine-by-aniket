@@ -2,8 +2,11 @@
 ========================
 A Spring Boot based MCQ quiz platform that parses questions from PDFs and generates interactive online tests with automated evaluation.
 
+
 # Live link: 
 https://quizmachine-by-aniket.onrender.com
+
+
 
 # Features
 ========================
@@ -15,6 +18,15 @@ https://quizmachine-by-aniket.onrender.com
 - Automated score calculation
 - REST API based backend
 - Simple frontend using HTML, CSS, and JavaScript
+
+  
+
+# Instructions
+========================
+- The platform currently supports *English-only PDFs*.
+- If the uploaded PDF contains instructions at the beginning, they may be interpreted as part of the first question during parsing.
+- Ensure the PDF is formatted with clear MCQ structure for best results.
+-Quiz my take around 60 seconds to launch
 
 
 # Tech Stack:
