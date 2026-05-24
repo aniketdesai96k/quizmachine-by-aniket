@@ -104,8 +104,8 @@ Live Link(Mentioned above)
 
 
 # Future Improvements:
-
 ========================
+
 Better UI/UX
 AI-assisted parsing improvements
 Authentication system
