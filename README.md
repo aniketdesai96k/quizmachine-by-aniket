@@ -4,6 +4,7 @@ A Spring Boot based MCQ quiz platform that parses questions from PDFs and genera
 Users can upload:
 - **a combined question-answer PDF**
 - **separate question and answer PDFs**
+  
 The system automatically parses questions, options, answers, and generates a live quiz with instant scoring.
 
 
