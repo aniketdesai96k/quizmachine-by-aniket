@@ -80,12 +80,17 @@ src/
 ========================
 
 when run Locally: 
+
 In Terminal:
 ./mvnw spring-boot:run
+
  Then open:
 http://localhost:8080
+
 OR
+
 Live Link(Mentioned above)
+
 1. User uploads PDF(s)
 2. Backend extracts raw text using PDFBox
 3. Regex-based parsers identify:
