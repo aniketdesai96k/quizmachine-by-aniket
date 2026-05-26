@@ -120,7 +120,6 @@ Live Link(Mentioned above)
 
 -Leaderboards
 
--Cloud deployment
 
 
 
